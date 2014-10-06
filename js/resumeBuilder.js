@@ -4,15 +4,15 @@
 
 var bio = {
     "name": "Kevin Mai",
-    "role": "Student",
+    "role": "",
     "contacts": {
 	"mobile": "714-200-4960",
 	"email": "kevinmai993@yahoo.com",
 	"github": "kmai12",
 	"twitter": "hi",
-	"location": "Santa Barbara"
+	"location": "Santa Barbara, CA"
     },
-    "welcomeMessage": "Welcome to my webpage!",
+    "welcomeMessage": "",
     "skills": [
 	"C", "C++", "Java", "Eclipse"
     ],
@@ -21,33 +21,33 @@ var bio = {
 
 function displayBio(){
     
-    var formattedName = HTMLheaderName.replace("%data%", bio.name);
-    $("#header").prepend(formattedName);
-    //    var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-    //    $("#header").append(formattedRole);
-    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-    $("#topContacts").append(formattedMobile);
-    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-    $("#topContacts").append(formattedEmail);
-    var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
-    $("#topContacts").append(formattedGitHub);
-    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-    $("#topContacts").append(formattedLocation);
     var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-    $("#header").append(formattedBioPic);
     var formattedWelcome = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
+    var formattedName = HTMLheaderName.replace("%data%", bio.name);
+    var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+    var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
+    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+
+
+    $("#header").prepend(formattedRole);
+    $("#header").prepend(formattedName);
+    $("#topContacts").append(formattedMobile);
+    $("#topContacts").append(formattedEmail);
+    $("#topContacts").append(formattedLocation);
+    $("#topContacts").append(formattedGitHub);
+
+    $("#header").append(formattedBioPic);
     $("#header").append(formattedWelcome);
 
     if(bio.skills.length > 0){
 	
 	$("#header").append(HTMLskillsStart);
-
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedSkill);
+	for(skill in bio.skills){
+	    var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+	    $("#skills").append(formattedSkill);
+	}
     }
 }
 
@@ -57,7 +57,7 @@ var education = {
     "schools": [
 	{
 	    "name": "University of California, Santa Barbara",
-	    "city": "Santa Barbara",
+	    "city": "Santa Barbara, CA",
 	    "degree": "Bachelor of Science",
 	    "major" : "Computer Science"
 	}
@@ -67,16 +67,16 @@ var education = {
 var work = {
     "jobs": [
 	{
-	    "employer": "GGSE",
-	    "position": "Student Help Desk",
+	    "employer": "GGSE Information Technology Group",
+	    "position": "ITG Technical Consultant, Help Desk",
 	    "dates": "November 2013 - Present",
-	    "description": "stub"
+	    "description": "Provided computer support of lab, classroom, and department workstations. Offered software, hardware, and licensing support for graduate students, staff, and faculty. Worked on special projects related to deploying and maintaining IT infrastructure."
 	},
 	{
 	    "employer": "De La Guerra Dining Commons",
 	    "position": "Student Dining Staff",
 	    "dates": "September 2012 - November 2013",
-	    "description": "stub"	
+	    "description": "Provided courteous food service to students and staff. Restocked food and supplies and maintained clean food displays. Worked in a team environment to clean dishes and kitchen equipment."	
 	}
     ]
 }
