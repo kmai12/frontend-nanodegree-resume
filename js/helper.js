@@ -19,7 +19,7 @@ var HTMLcontactGeneric = "<li class='flex-item'><span class='orange-text'>%conta
 var HTMLmobile = "<li class='flex-item'><span class='orange-text'>mobile</span><span class='white-text'>%data%</span></li>";
 var HTMLemail = "<li class='flex-item'><span class='orange-text'>email</span><span class='white-text'>%data%</span></li>";
 var HTMLtwitter = "<li class='flex-item'><span class='orange-text'>twitter</span><span class='white-text'>%data%</span></li>";
-var HTMLgithub = "<li class='flex-item'><span class='orange-text'>github</span><span class='white-text'>%data%</span></li>";
+var HTMLgithub = "<li class='flex-item'><span class='orange-text'>github</span><span class='white-text-link' onclick='window.open(\"%data%\")'>%data2%</span></li>";
 var HTMLblog = "<li class='flex-item'><span class='orange-text'>blog</span><span class='white-text'>%data%</span></li>";
 var HTMLlocation = "<li class='flex-item'><span class='orange-text'>location</span><span class='white-text'>%data%</span></li>";
 
@@ -30,22 +30,22 @@ var HTMLskillsStart = "<h3 id='skillsH3'>Skills at a Glance:</h3><ul id='skills'
 var HTMLskills = "<li class='flex-item'><span class='white-text'>%data%</span></li>";
 
 var HTMLworkStart = "<div class='work-entry'></div>";
-var HTMLworkEmployer = "<a href='#'>%data%";
-var HTMLworkTitle = " - %data%</a>";
+var HTMLworkEmployer = "<b>%data%";
+var HTMLworkTitle = " - <i>%data%</i></b><br>";
 var HTMLworkDates = "<div class='date-text'>%data%</div>";
 var HTMLworkLocation = "<div class='location-text'>%data%</div>";
 var HTMLworkDescription = "<p><br>%data%</p>";
 
 var HTMLprojectStart = "<div class='project-entry'></div>";
-var HTMLprojectTitle = "<a href='#'>%data%</a>";
+var HTMLprojectTitle = "<b>%data%</b><br>";
 var HTMLprojectDates = "<div class='date-text'>%data%</div>";
 var HTMLprojectDescription = "<p><br>%data%</p>";
 var HTMLprojectImage = "<img src='%data%'>";
 
 var HTMLschoolStart = "<div class='education-entry'></div>";
-var HTMLschoolName = "<a href='#'>%data%";
-var HTMLschoolDegree = " -- %data%</a>";
-var HTMLschoolDates = "<div class='date-text'>%data%</div>";
+var HTMLschoolName = "<b>%data%</b><br>";
+var HTMLschoolDegree = "%data%</a>";
+var HTMLschoolDates = "<div class='grad-date'>%data%</div>";
 var HTMLschoolLocation = "<div class='location-text'>%data%</div>";
 var HTMLschoolMajor = "<em><br>Major: %data%</em>"
 
@@ -54,6 +54,9 @@ var HTMLonlineTitle = "<a href='#'>%data%";
 var HTMLonlineSchool = " - %data%</a>";
 var HTMLonlineDates = "<div class='date-text'>%data%</div>";
 var HTMLonlineURL = "<br><a href='#'>%data%</a>";
+
+//var HTMLbullet = "<div><li class='flex-item'><span>%data%</span></li></div>";
+var HTMLbullet = "<li>%data%</li>"
 
 var internationalizeButton = "<button>Internationalize</button>";
 var googleMap = "<div id='map'></div>";
@@ -229,6 +232,19 @@ function initializeMap() {
   pinPoster(locations);
   
 };
+
+function bulletDisplay(paragraph, location_last){
+    var sentences = paragraph.split(". ");
+    $(location_last).append("<br>");
+    for(var sentence; sentence < sentences.length - 1; ++sentence){
+	sentences[sentence] = sentences[sentence] + ".";
+    }
+    for(sentence in sentences){
+	var formattedBullet = HTMLbullet.replace("%data%", sentences[sentence]);
+	$(location_last).append(formattedBullet);
+    }
+    $(location_last).append("<br>");
+}
 
 /*
 Uncomment all the code below when you're ready to implement a Google Map!

@@ -5,6 +5,7 @@ var bio = {
 	"mobile": "714-200-4960",
 	"email": "kevinmai993@yahoo.com",
 	"github": "kmai12",
+	"githublink": "http://www.github.com/kmai12",
 	"twitter": "hi",
 	"location": "Santa Barbara, CA"
     },
@@ -23,7 +24,8 @@ function displayBio(){
     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
     var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
     var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-    var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
+    var formattedGitHub = HTMLgithub.replace("%data2%", bio.contacts.github);
+    formattedGitHub = formattedGitHub.replace("%data%", bio.contacts.githublink);
     var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
 

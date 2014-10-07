@@ -17,7 +17,7 @@ var work = {
     ]
 }
 
-function displayWork(){
+work.display = function(){
     for (job in work.jobs){
 	// create new div for experience
 	$("#workExperience").append(HTMLworkStart);
@@ -36,26 +36,9 @@ function displayWork(){
 	//	$(".work-entry:last").append(formattedDescription);
 	
 	var description = work.jobs[job].description;
-	var sentences = description.split(". ");
-	$(".work-entry:last").append("<br>");
-	for(var sentence; sentence < sentences.length - 1; ++sentence){
-	    sentences[sentence] = sentences[sentence] + ".";
-	}
 	
-	for(sentence in sentences){
-	    var formattedDescription = HTMLbullet.replace("%data%", sentences[sentence]);
-	    
-	    $(".work-entry:last").append(formattedDescription);
-	}
+	bulletDisplay(description, ".work-entry:last");
     }
-    
-
-    //<ol>
-    //<li>Coffee</li>
-    //<li>Tea</li>
-    //</ol>
-    
-    
 }
 
-displayWork();
+work.display();

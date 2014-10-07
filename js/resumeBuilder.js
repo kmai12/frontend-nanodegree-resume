@@ -1,86 +1,3 @@
-//var formattedName = HTMLheaderName.replace("%data%", "KEVIN MAI")
-//$("#header").prepend(formattedName);
-//$("#main").append("hi");
-
-var bio = {
-    "name": "Kevin Mai",
-    "role": "",
-    "contacts": {
-	"mobile": "714-200-4960",
-	"email": "kevinmai993@yahoo.com",
-	"github": "kmai12",
-	"twitter": "hi",
-	"location": "Santa Barbara, CA"
-    },
-    "welcomeMessage": "",
-    "skills": [
-	"C", "C++", "Java", "Eclipse"
-    ],
-    "bioPic": "images/fry.jpg"
-}
-
-function displayBio(){
-    
-    var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-    var formattedWelcome = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
-    var formattedName = HTMLheaderName.replace("%data%", bio.name);
-    var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-    var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
-    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-
-
-    $("#header").prepend(formattedRole);
-    $("#header").prepend(formattedName);
-    $("#topContacts").append(formattedMobile);
-    $("#topContacts").append(formattedEmail);
-    $("#topContacts").append(formattedLocation);
-    $("#topContacts").append(formattedGitHub);
-
-    $("#header").append(formattedBioPic);
-    $("#header").append(formattedWelcome);
-
-    if(bio.skills.length > 0){
-	
-	$("#header").append(HTMLskillsStart);
-	for(skill in bio.skills){
-	    var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-	    $("#skills").append(formattedSkill);
-	}
-    }
-}
-
-displayBio();
-
-var education = {
-    "schools": [
-	{
-	    "name": "University of California, Santa Barbara",
-	    "city": "Santa Barbara, CA",
-	    "degree": "Bachelor of Science",
-	    "major" : "Computer Science"
-	}
-    ]
-}
-
-var work = {
-    "jobs": [
-	{
-	    "employer": "GGSE Information Technology Group",
-	    "position": "ITG Technical Consultant, Help Desk",
-	    "dates": "November 2013 - Present",
-	    "description": "Provided computer support of lab, classroom, and department workstations. Offered software, hardware, and licensing support for graduate students, staff, and faculty. Worked on special projects related to deploying and maintaining IT infrastructure."
-	},
-	{
-	    "employer": "De La Guerra Dining Commons",
-	    "position": "Student Dining Staff",
-	    "dates": "September 2012 - November 2013",
-	    "description": "Provided courteous food service to students and staff. Restocked food and supplies and maintained clean food displays. Worked in a team environment to clean dishes and kitchen equipment."	
-	}
-    ]
-}
-
 var projects = {
     "projects": [
 	{
@@ -109,13 +26,35 @@ function displayWork(){
 	var formattedEmployerTitle = formattedEmployer + formattedTitle;
 	$(".work-entry:last").append(
 	    formattedEmployerTitle);    
-	
+	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	$(".work-entry:last").append(formattedLocation);
 	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
 	$(".work-entry:last").append(formattedDates);
 	
-	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-	$(".work-entry:last").append(formattedDescription);
+	//	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+	//	$(".work-entry:last").append(formattedDescription);
+	
+	var description = work.jobs[job].description;
+	var sentences = description.split(". ");
+	$(".work-entry:last").append("<br>");
+	for(var sentence; sentence < sentences.length - 1; ++sentence){
+	    sentences[sentence] = sentences[sentence] + ".";
+	}
+	
+	for(sentence in sentences){
+	    var formattedDescription = HTMLbullet.replace("%data%", sentences[sentence]);
+	    
+	    $(".work-entry:last").append(formattedDescription);
+	}
     }
+    
+
+    //<ol>
+    //<li>Coffee</li>
+    //<li>Tea</li>
+    //</ol>
+    
+    
 }
 
 displayWork();
@@ -132,7 +71,7 @@ projects.display = function(){
 
 	if(projects.projects[project].images.length > 0){
 	    for(image in projects.projects[project].image){
-var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+		var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
 		$(".project-entry:last").append(formattedImage);
 	    }
 	}
